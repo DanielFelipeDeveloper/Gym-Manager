@@ -1,0 +1,12 @@
+{
+  "instructors": [
+    {
+      "avatar_url": "https://www.youtube.com/",
+      "name": "pedrao",
+      "birth": "2002-01-28",
+      "gender": "M",
+      "services": "vrau",
+      "created_at": 1595445733150
+    }
+  ]
+}
