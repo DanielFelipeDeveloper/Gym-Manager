@@ -9,7 +9,7 @@
         <h3>Detalhes</h3>
 
         <div class="item">
-            <div>Instrutor</div>
+            <div>{{ "Instrutor" if instructor.gender == "M" else "Instrutora" }}</div>
             <div>{{ instructor.name }}</div>
         </div>
 
@@ -37,6 +37,8 @@
             <div>{{ instructor.created_at }}</div>
         </div>
         
+        <a class="button" href="#">Editar</a>
+
     </section>
 </div>
 {% endblock %}
