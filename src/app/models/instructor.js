@@ -4,7 +4,10 @@ const db = require('../../config/db')
 module.exports = {
   all(callback) {
 
-    db.query(`SELECT * FROM instructors`, (err, results) => {
+    db.query(`
+      SELECT * 
+      FROM instructors
+      ORDER BY name ASC`, (err, results) => {
       if (err) throw `Database Error! ${err}`
 
       callback(results.rows)
@@ -23,27 +26,27 @@ module.exports = {
             RETURNING id
         `
 
-        const values = [
-            data.name,
-            data.avatar_url,
-            data.gender,
-            data.services,
-            date(data.birth).iso,
-            date(Date.now()).iso
-        ]
+    const values = [
+      data.name,
+      data.avatar_url,
+      data.gender,
+      data.services,
+      date(data.birth).iso,
+      date(Date.now()).iso
+    ]
 
-        db.query(query, values, (err, results) => {
-            if(err) throw `Database Error! ${err}`
+    db.query(query, values, (err, results) => {
+      if (err) throw `Database Error! ${err}`
 
-            callback(results.rows[0])
-        })
+      callback(results.rows[0])
+    })
   },
   find(id, callback) {
     db.query(`
       SELECT * 
       FROM INSTRUCTORS 
-      WHERE ID= $1`, [id], function(err, results) {
-      if(err) throw `Database Error! ${err}`
+      WHERE ID= $1`, [id], (err, results) => {
+      if (err) throw `Database Error! ${err}`
       callback(results.rows[0])
     })
   },
@@ -66,15 +69,15 @@ module.exports = {
       data.id
     ]
 
-    db.query(query, values, function(err, results) {
-      if(err) throw `Database Error! ${err}`
+    db.query(query, values, (err, results) => {
+      if (err) throw `Database Error! ${err}`
 
       callback()
     })
   },
   delete(id, callback) {
-    db.query(`DELETE from INSTRUCTORS WHERE id = $1`, [id], function(err, results) {
-      if(err) throw `Database Error! ${err}`
+    db.query(`DELETE from INSTRUCTORS WHERE id = $1`, [id], (err, results) => {
+      if (err) throw `Database Error! ${err}`
 
       return callback()
     })
